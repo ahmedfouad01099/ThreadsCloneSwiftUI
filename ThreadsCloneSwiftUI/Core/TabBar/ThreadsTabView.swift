@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ThreadsTabView: View {
     @State private var selectedTab: Int = 0
+    @State private var showCreateThreadView = false
 
     var body: some View {
         TabView(selection: $selectedTab) {
@@ -18,7 +19,9 @@ struct ThreadsTabView: View {
                         systemName: selectedTab == 0 ? "house.fill" : "house"
                     )
                     .environment(
-                        \.symbolVariants, selectedTab == 0 ? .fill : .none)
+                        \.symbolVariants,
+                        selectedTab == 0 ? .fill : .none
+                    )
                 }
                 .onAppear { selectedTab = 0 }
                 .tag(0)
@@ -30,7 +33,7 @@ struct ThreadsTabView: View {
                 .onAppear { selectedTab = 1 }
                 .tag(1)
 
-            CreateThreadView()
+            Text("")
                 .tabItem {
                     Image(systemName: "plus")
                 }
@@ -43,7 +46,9 @@ struct ThreadsTabView: View {
                         systemName: selectedTab == 3 ? "heart.fill" : "heart"
                     )
                     .environment(
-                        \.symbolVariants, selectedTab == 3 ? .fill : .none)
+                        \.symbolVariants,
+                        selectedTab == 3 ? .fill : .none
+                    )
                 }
                 .onAppear { selectedTab = 3 }
                 .tag(3)
@@ -54,11 +59,25 @@ struct ThreadsTabView: View {
                         systemName: selectedTab == 4 ? "person.fill" : "person"
                     )
                     .environment(
-                        \.symbolVariants, selectedTab == 4 ? .fill : .none)
+                        \.symbolVariants,
+                        selectedTab == 4 ? .fill : .none
+                    )
                 }
                 .onAppear { selectedTab = 4 }
                 .tag(4)
         }
+        .onChange(of: selectedTab) { newValue in
+            showCreateThreadView = newValue == 2
+        }
+        .sheet(
+            isPresented: $showCreateThreadView,
+            onDismiss: {
+                selectedTab = 0
+            },
+            content: {
+                CreateThreadView()
+            }
+        )
         .tint(.black)
     }
 }
