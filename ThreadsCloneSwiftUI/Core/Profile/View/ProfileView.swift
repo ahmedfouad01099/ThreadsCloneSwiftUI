@@ -17,64 +17,75 @@ struct ProfileView: View {
     }
 
     var body: some View {
-        VStack {
-            // bio and stats
-            VStack(spacing: 20) {
-                HStack(alignment: .top) {
-                    VStack(alignment: .leading, spacing: 12) {
-                        // fullname and username
-                        VStack(alignment: .leading, spacing: 4) {
-                            Text("Ahmed Fouad")
-                                .font(.title2)
-                                .fontWeight(.semibold)
-                            Text("ahmed_fouad")
-                                .font(.subheadline)
+        NavigationStack {
+            VStack {
+                // bio and stats
+                VStack(spacing: 20) {
+                    HStack(alignment: .top) {
+                        VStack(alignment: .leading, spacing: 12) {
+                            // fullname and username
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text("Ahmed Fouad")
+                                    .font(.title2)
+                                    .fontWeight(.semibold)
+                                Text("ahmed_fouad")
+                                    .font(.subheadline)
+                            }
+
+                            Text("Software Engineer")
+                                .font(.footnote)
+
+                            Text("22 followers")
+                                .font(.caption)
+                                .foregroundColor(.gray)
                         }
 
-                        Text("Software Engineer")
-                            .font(.footnote)
+                        Spacer()
 
-                        Text("22 followers")
-                            .font(.caption)
-                            .foregroundColor(.gray)
+                        CircularProfileImageView()
                     }
 
-                    Spacer()
+                    Button {
 
-                    CircularProfileImageView()
-                }
+                    } label: {
+                        Text("Follow")
+                            .font(.subheadline)
+                            .fontWeight(.semibold)
+                            .frame(width: 352, height: 32)
+                            .background(.black)
+                            .cornerRadius(8)
+                            .foregroundColor(.white)
+                    }
 
-                Button {
-
-                } label: {
-                    Text("Follow")
-                        .font(.subheadline)
-                        .fontWeight(.semibold)
-                        .frame(width: 352, height: 32)
-                        .background(.black)
-                        .cornerRadius(8)
-                        .foregroundColor(.white)
-                }
-
-                // user content list view
-                VStack {
-                    HStack {
-                        ForEach(ProfileThreadFilter.allCases) { filter in
-                            filterItemView(for: filter)
+                    // user content list view
+                    VStack {
+                        HStack {
+                            ForEach(ProfileThreadFilter.allCases) { filter in
+                                filterItemView(for: filter)
+                            }
                         }
                     }
-                }
 
-                ScrollView(showsIndicators: false) {
-                    LazyVStack {
-                        ForEach(0...10, id: \.self) { thread in
-                            ThreadCell()
+                    ScrollView(showsIndicators: false) {
+                        LazyVStack {
+                            ForEach(0...10, id: \.self) { thread in
+                                ThreadCell()
+                            }
                         }
+                        .padding(.vertical, 8)
                     }
-                    .padding(.vertical, 8)
+                }
+                .padding()
+            }
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        AuthService.shared.signOut()
+                    } label: {
+                        Text("Logout")
+                    }
                 }
             }
-            .padding()
         }
     }
 
