@@ -34,4 +34,8 @@ class UserService {
             print("debug: Error fetching current user: \(error)")
         }
     }
+
+    func reset() {
+        self.currentUser = nil
+    }
 }
