@@ -56,7 +56,7 @@ struct EditProfileView: View {
 
                         TextField(
                             "Add link...",
-                            text: $link,
+                            text: $link
                         )
                     }
 
