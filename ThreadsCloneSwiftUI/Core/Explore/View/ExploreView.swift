@@ -33,7 +33,7 @@ struct ExploreView: View {
                     destination: {
                         user
                         in
-                        ProfileView()
+                        ProfileView(user: user)
                     }
                 )
                 .searchable(text: $searchText, prompt: "Search")
