@@ -5,6 +5,7 @@
 //  Created by Ahmed Fouad on 01/10/2025.
 //
 
+import Firebase
 import SwiftUI
 
 // MARK: - Developer Preview Singleton
@@ -17,6 +18,14 @@ final class DeveloperPreview {
         fullname: "Ahmed Fouad",
         email: "ahmedfouad@gmail.com",
         username: "ahmed_fouad"
+    )
+
+    let thread = Thread(
+        threadId: "123",
+        ownerId: "111",
+        caption: "This is a test Thread",
+        timestamp: Timestamp(),
+        likes: 0
     )
 }
 
