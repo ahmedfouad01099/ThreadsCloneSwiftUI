@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct UserContentListView: View {
+    @StateObject var viewModel: UserContentListViewModel
+
     @State private var selectedFilter: ProfileThreadFilter = .threads
     @Namespace var animation
     private var filterBarWidth: CGFloat {
@@ -16,6 +18,11 @@ struct UserContentListView: View {
         return UIScreen.main.bounds.width / count - 16
     }
 
+    init(user: User) {
+        self._viewModel = StateObject(
+            wrappedValue: UserContentListViewModel(user: user)
+        )
+    }
     var body: some View {
         VStack {
             HStack {
@@ -23,7 +30,16 @@ struct UserContentListView: View {
                     filterItemView(for: filter)
                 }
             }
+
+            ScrollView(showsIndicators: false) {
+                LazyVStack {
+                    ForEach(viewModel.threads) { thread in
+                        ThreadCell(thread: thread)
+                    }
+                }
+            }
         }
+        .padding(.vertical, 8)
     }
     // Extracted function to simplify the complex expression
     private func filterItemView(for filter: ProfileThreadFilter) -> some View {
@@ -49,5 +65,5 @@ struct UserContentListView: View {
 }
 
 #Preview {
-    UserContentListView()
+    UserContentListView(user: dev.user)
 }
