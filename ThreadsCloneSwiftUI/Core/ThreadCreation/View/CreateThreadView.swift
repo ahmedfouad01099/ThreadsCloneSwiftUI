@@ -10,12 +10,12 @@ import SwiftUI
 struct CreateThreadView: View {
     @State private var caption: String = ""
     @Environment(\.dismiss) var dismiss
-    
+
     var body: some View {
         NavigationStack {
             VStack {
                 HStack(alignment: .top) {
-                    CircularProfileImageView()
+                    CircularProfileImageView(user: nil, size: .medium)
 
                     VStack(alignment: .leading, spacing: 4) {
                         Text("Ahmed Fouad")
