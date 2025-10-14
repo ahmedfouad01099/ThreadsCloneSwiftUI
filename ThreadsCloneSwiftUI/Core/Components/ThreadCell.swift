@@ -7,6 +7,15 @@
 
 import SwiftUI
 
+// MARK: - Date Extension
+extension Date {
+    func timestampString() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMM d, h:mm a" // Example: Oct 8, 2:15 PM
+        return formatter.string(from: self)
+    }
+}
+
 struct ThreadCell: View {
     let thread: Thread
 
@@ -23,7 +32,7 @@ struct ThreadCell: View {
 
                         Spacer()
 
-                        Text(thread.timestamp.timestampString())
+                        Text(thread.timestamp?.timestampString() ?? "")
                             .font(.caption)
                             .foregroundColor(Color(.systemGray3))
 

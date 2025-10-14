@@ -24,7 +24,7 @@ final class DeveloperPreview {
         threadId: "123",
         ownerId: "111",
         caption: "This is a test Thread",
-        timestamp: Timestamp(),
+        timestamp: Date(),
         likes: 0
     )
 }

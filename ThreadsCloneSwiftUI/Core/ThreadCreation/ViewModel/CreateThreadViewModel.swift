@@ -18,7 +18,7 @@ class CreateThreadViewModel: ObservableObject {
         let thread = Thread(
             ownerId: uid,
             caption: caption,
-            timestamp: Timestamp(),
+            timestamp: Date(),
             likes: 0
         )
 

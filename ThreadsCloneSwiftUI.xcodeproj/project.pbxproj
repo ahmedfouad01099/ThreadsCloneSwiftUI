@@ -117,12 +117,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AB572A4B2E9E5D4500FEF9A4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		AB8139862E82E45A003619FD = {
 			isa = PBXGroup;
 			children = (
 				AB8139912E82E45B003619FD /* ThreadsCloneSwiftUI */,
 				AB8139A22E82E45C003619FD /* ThreadsCloneSwiftUITests */,
 				AB8139AC2E82E45C003619FD /* ThreadsCloneSwiftUIUITests */,
+				AB572A4B2E9E5D4500FEF9A4 /* Frameworks */,
 				AB8139902E82E45B003619FD /* Products */,
 			);
 			sourceTree = "<group>";

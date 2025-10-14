@@ -38,7 +38,8 @@ struct ThreadService {
             try? $0.data(as: Thread.self)
         }
         return threads.sorted {
-            $0.timestamp.dateValue() > $1.timestamp.dateValue()
+            ($0.timestamp ?? Date.distantPast) > ($1.timestamp ?? Date.distantPast)
         }
+
     }
 }

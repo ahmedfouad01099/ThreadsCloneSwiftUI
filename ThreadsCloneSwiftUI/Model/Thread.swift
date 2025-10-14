@@ -13,7 +13,7 @@ struct Thread: Identifiable, Codable {
 
     let ownerId: String
     let caption: String
-    let timestamp: Timestamp
+    @ServerTimestamp var timestamp: Date?
     let likes: Int
 
     var id: String {
